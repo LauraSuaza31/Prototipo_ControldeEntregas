@@ -1,0 +1,38 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <a class="brand-link">
+        <img src="./assets/dist/img/equipos/logo-equipo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+            style="opacity: .8">
+        <span class="brand-text" style="font-weight: bold; font-size: 0.8em">Control De Equipos</span>
+    </a>
+    <div class="sidebar">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="./assets/dist/img/equipos/usuario.jpg" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">{{infoUsuarioSesion.nombreEmpleado}}</a>
+            </div>
+        </div>
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item" *ngFor="let menu of menus">
+                    <a class="nav-link">
+                        <i class="{{menu.icono}}"></i>
+                        <p class="ml-2">
+                            {{menu.titulo}}
+                            <i *ngIf="menu.hasOwnProperty('subMenu')" class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul *ngIf="menu.hasOwnProperty('subMenu')" class="nav nav-treeview">
+                        <li class="nav-item" *ngFor="let subMenu of menu.subMenu">
+                            <a [routerLink]="subMenu.url" class="nav-link" style="cursor: pointer;">
+                                <i class="{{subMenu.icono}}"></i>
+                                <p class="ml-2">{{subMenu.titulo}}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>

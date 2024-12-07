@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+.modal-backdrop {
+    z-index: 1050 !important;
+}
+
+.has-error .control-label {
+    color: red;
+}
+
+.has-error .form-control {
+    border-color: red;
+}
+
+.login-page {
+    background: #8AB0CE;
+}
+
+.main-sidebar {
+    background: black;
+}
+
+.main-header {
+    background: #3885c1;
+    border-color: #3885c1;
+}

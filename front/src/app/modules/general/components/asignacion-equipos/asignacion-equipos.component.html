@@ -1,0 +1,92 @@
+<section class="content">
+	<div class="container-fluid">
+		<div class="card card-info card-outline">
+			<div class="card-header">
+			</div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-md-12 d-md-flex justify-content-md-end">
+						<button class="btn btn-default float-right" (click)="abrirModal()">
+							<i class="fa fa-plus"></i>
+							Agregar
+						</button>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-md-12">
+						<dx-data-grid
+							[dataSource]="listaAsignacionEquipos"
+							keyExpr="idAsignacion"
+							[showBorders]="true">
+							<dxo-filter-row
+								[visible]="true"
+								[applyFilter]="true"
+							></dxo-filter-row>
+							<dxo-search-panel [visible]="true"></dxo-search-panel>
+							<dxo-paging [pageSize]="10"> </dxo-paging>
+							<dxo-header-filter [visible]="true"></dxo-header-filter>
+							<dxo-export [enabled]="true" fileName="Lista de Asignaciones"></dxo-export>
+							<dxo-selection mode="single"></dxo-selection>
+							<dxi-column
+								dataField="idAsignacion"
+								caption="Asignación"
+								dataType="string"
+								alignment="center"
+							></dxi-column>
+                            <dxi-column
+								dataField="nombreEquipo"
+								caption="Equipo"
+								dataType="string"
+								alignment="center"
+							></dxi-column>
+							<dxi-column
+								dataField="nombreEmpleadoRecibe"
+								caption="Empleado que Recibe"
+								dataType="string"
+								alignment="center"
+							></dxi-column>
+                            <dxi-column
+								dataField="nombreEmpleadoEntrega"
+								caption="Empleado que Entrega"
+								dataType="string"
+								alignment="center"
+							></dxi-column>
+                            <dxi-column
+								dataField="fechaEntrega"
+								caption="Fecha de Entrega"
+								dataType="string"
+								alignment="center"
+							></dxi-column>
+                            <dxi-column
+								dataField="horaEntrega"
+								caption="Hora de Entrega"
+								dataType="string"
+								alignment="center"
+							></dxi-column>
+							<dxi-column
+								caption="Acción"
+								cellTemplate="accion"
+								alignment="center"
+							></dxi-column>
+							<div *dxTemplate="let data of 'accion'">
+								<a class="cursor-pointer" (click)="eliminar(data.data)">
+									<i class="fa fa-trash"></i>
+									Eliminar
+								</a>
+							</div>
+						</dx-data-grid>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<app-captura-asignacion
+	[(visible)]="abrirmodalAsignacionEquipos"
+	[accion]="accion"
+	(actualizar)="actualizarGrid($event)">
+</app-captura-asignacion>
+
+
+

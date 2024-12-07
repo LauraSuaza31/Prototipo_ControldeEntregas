@@ -1,0 +1,32 @@
+<div class="hold-transition login-page">
+	<div class="login-box">
+		<div class="card card-outline card-primary">
+			<div class="card card-widget widget-user">
+				<div class="widget-user-header" style="background: black;">
+					<h5 class="widget-user-desc" style="color:white; font-weight: bold;">Control De Equipos</h5>
+				</div>
+				<div class="widget-user-image">
+					<img class="img-circle" src="./assets/dist/img/equipos/logo-equipo.png" alt="User Avatar">
+				</div>
+			</div>
+			<div class="card-body">
+				<p class="login-box-msg">Inicio De Sesión</p>
+				<form [formGroup]="formularioLogin">
+					<div class="input-group mb-3">
+                        <input type="text" class="form-control" formControlName="usuario" placeholder="Usuario" required>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fa fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+				</form>
+				<div class="social-auth-links text-center mt-2 mb-3">
+                    <a href="#" class="btn btn-block btn-secondary" (click)="ingresar()">
+                        <i></i> Ingresar
+                    </a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>

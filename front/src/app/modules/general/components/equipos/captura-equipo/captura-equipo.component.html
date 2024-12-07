@@ -1,0 +1,70 @@
+<ng-template #modalEquipos>
+	<div class="modal-header with-border">
+		<h3 class="box-title">
+			<span *ngIf="accion == accionARealizar.Adicion">Crear </span> 
+			<span *ngIf="accion == accionARealizar.Edicion">Modificar </span> 
+			equipo</h3>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cerrarModal()">
+			<span aria-hidden="true">×</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<div class="row">
+			<div class="col-md-12">
+				<!-- Acciones de botones crud  -->
+				<button id="agregar" class="btn btn-flat btn-social btn-default" (click)="guardar()">
+					Guardar
+					<i class="fa fa-save"></i>
+				</button>
+				<button id="descartar" class="btn btn-flat btn-social btn-default" (click)="cerrarModal()">
+					Descartar
+					<i class="fa fa-reply"></i>
+				</button>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-md-12">
+				<div [formGroup]="formularioEquipos">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-horizontal">
+									<div class="form-group" [ngClass]="{'has-error': formularioEquipos.controls['idSerial'].invalid && validaFor}">
+										<label class="control-label">Serial</label>
+										<input type="text" class="form-control" formControlName="idSerial" [maxlength]="20">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-horizontal">
+									<div class="form-group" [ngClass]="{'has-error': formularioEquipos.controls['nombre'].invalid && validaFor}">
+										<label class="control-label">Nombre</label>
+										<input type="text" class="form-control" formControlName="nombre" [maxlength]="20">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-horizontal">
+									<div class="form-group" [ngClass]="{'has-error': formularioEquipos.controls['estado'].invalid && validaFor}">
+										<label class="control-label">Estado</label>
+										<dx-lookup 
+											[dataSource]="listaEstados" 
+											formControlName="estado"
+											displayExpr="descripcion"
+											valueExpr="id"
+											[value]="0"
+											class="form-control">
+										</dx-lookup>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</ng-template>

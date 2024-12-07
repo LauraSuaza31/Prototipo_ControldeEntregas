@@ -1,0 +1,113 @@
+<section class="content">
+	<div class="container-fluid">
+		<div class="card card-info card-outline">
+			<div class="card-header">
+			</div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-md-12 d-md-flex justify-content-md-end">
+						<button class="btn btn-default float-right" (click)="abrirModal()">
+							<i class="fa fa-plus"></i>
+							Agregar
+						</button>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-md-12">
+						<dx-data-grid
+							[dataSource]="listaEmpleados"
+							keyExpr="id"
+							[showBorders]="true"
+							(onRowDblClick)="seleccionarEmpleado($event.data)">
+							<dxo-filter-row
+								[visible]="true"
+								[applyFilter]="true"
+							></dxo-filter-row>
+							<dxo-search-panel [visible]="true"></dxo-search-panel>
+							<dxo-paging [pageSize]="10"> </dxo-paging>
+							<dxo-header-filter [visible]="true"></dxo-header-filter>
+							<dxo-export [enabled]="true" fileName="Lista de Empleados"></dxo-export>
+							<dxo-selection mode="single"></dxo-selection>
+							<dxi-column
+								dataField="id"
+								caption="Id"
+								dataType="string"
+								alignment="center"
+							></dxi-column>
+                            <dxi-column
+								dataField="identificacion"
+								caption="Identificación"
+								dataType="string"
+								alignment="center"
+							></dxi-column>
+							<dxi-column
+								dataField="nombre"
+								caption="Nombre"
+								dataType="string"
+								alignment="center"
+							></dxi-column>
+                            <dxi-column
+								dataField="apellido"
+								caption="Apellido"
+								dataType="string"
+								alignment="center"
+							></dxi-column>
+                            <dxi-column
+								dataField="genero"
+								caption="Genero"
+								dataType="string"
+								alignment="center"
+							></dxi-column>
+                            <dxi-column
+								dataField="nombreCargo"
+								caption="Cargo"
+								dataType="string"
+								alignment="center"
+							></dxi-column>
+                            <dxi-column
+								dataField="nombreArea"
+								caption="Area"
+								dataType="string"
+								alignment="center"
+							></dxi-column>
+							<dxi-column
+								dataField="estado"
+								caption="Estado"
+								cellTemplate="estadoEmpleado"
+								dataType="string"
+								alignment="center"
+							></dxi-column>
+							<dxi-column
+								caption="Acción"
+								cellTemplate="accion"
+								alignment="center"
+							></dxi-column>
+							<div *dxTemplate="let data of 'estadoEmpleado'">
+								<span *ngIf="data.value == 0">
+									<i class="fas fa-circle nav-icon text-danger"></i>
+								</span>
+								<span *ngIf="data.value == 1">
+									<i class="fas fa-circle nav-icon text-success"></i>
+								</span>
+							</div>
+							<div *dxTemplate="let data of 'accion'">
+								<a class="cursor-pointer" (click)="eliminar(data.data)">
+									<i class="fa fa-trash"></i>
+									Eliminar
+								</a>
+							</div>
+						</dx-data-grid>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<app-captura-empleado 
+	[(visible)]="abrirModalEmpleados" 
+	[accion]="accion" 
+	[datosEmpleado]="modeloEmpleado" 
+	(actualizar)="actualizarGrid($event)">
+</app-captura-empleado>
+
